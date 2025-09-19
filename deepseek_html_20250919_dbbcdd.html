@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Pages Error Troubleshooter</title>
+    <title>Jekyll SCSS Error Troubleshooter</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -297,6 +297,19 @@
             font-family: monospace;
         }
 
+        pre {
+            background: rgba(0, 0, 0, 0.05);
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
         /* Interactive Checker */
         .interactive-checker {
             background: white;
@@ -473,7 +486,7 @@
             <nav>
                 <div class="logo">
                     <i class="fab fa-github"></i>
-                    <span>GitHub Pages Fixer</span>
+                    <span>Jekyll SCSS Fixer</span>
                 </div>
                 <ul class="nav-links">
                     <li><a href="#solutions">Solutions</a></li>
@@ -490,15 +503,15 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>GitHub Pages Build Error</h1>
-                <p>Fixing the "No such file or directory @ dir_chdir" error in GitHub Pages</p>
+                <h1>Jekyll SCSS Conversion Error</h1>
+                <p>Fixing the "No such file or directory @ dir_chdir" error for SCSS files in Jekyll</p>
                 
                 <div class="error-alert">
                     <i class="fas fa-exclamation-circle"></i>
                     <div>
-                        <strong>Error Detected:</strong> Your GitHub Pages build is failing with the error:
-                        <div class="error-code">Error: No such file or directory @ dir_chdir0 - /github/workspace/docs</div>
-                        <p class="mt-2">This usually happens when GitHub Pages can't find your site's source files.</p>
+                        <strong>Error Detected:</strong> Your Jekyll build is failing with the error:
+                        <div class="error-code">Conversion error: Jekyll::Converters::Scss encountered an error while converting 'assets/css/style.scss': No such file or directory @ dir_chdir0 - /github/workspace/docs</div>
+                        <p class="mt-2">This usually happens when Jekyll can't find the referenced SCSS file or its dependencies.</p>
                     </div>
                 </div>
                 
@@ -512,29 +525,29 @@
         <div class="container">
             <div class="section-title">
                 <h2>How to Fix This Error</h2>
-                <p>Try these solutions to resolve the GitHub Pages build error</p>
+                <p>Try these solutions to resolve the Jekyll SCSS conversion error</p>
             </div>
             <div class="solution-grid">
                 <div class="solution-card">
                     <div class="solution-icon">
-                        <i class="fas fa-folder-open"></i>
+                        <i class="fas fa-file"></i>
                     </div>
-                    <h3>Check Your Source Folder</h3>
-                    <p>GitHub Pages is looking for a <code>/docs</code> folder but can't find it. Make sure your files are in the correct location.</p>
+                    <h3>Check File Paths</h3>
+                    <p>Jekyll can't find your SCSS file. Make sure the file path is correct and the file exists in your repository.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-folder"></i>
+                    </div>
+                    <h3>Verify Directory Structure</h3>
+                    <p>Ensure your SCSS files are in the correct directory. Jekyll expects certain folder structures for assets.</p>
                 </div>
                 <div class="solution-card">
                     <div class="solution-icon">
                         <i class="fas fa-cog"></i>
                     </div>
-                    <h3>Configure Source Settings</h3>
-                    <p>Go to your repository Settings → Pages → and select the correct source (root or /docs folder).</p>
-                </div>
-                <div class="solution-card">
-                    <div class="solution-icon">
-                        <i class="fas fa-file"></i>
-                    </div>
-                    <h3>Add Index File</h3>
-                    <p>Ensure you have an <code>index.html</code> file in the root of your selected source directory.</p>
+                    <h3>Check Front Matter</h3>
+                    <p>SCSS files need proper front matter to be processed by Jekyll. Add YAML front matter if missing.</p>
                 </div>
             </div>
         </div>
@@ -545,55 +558,89 @@
         <div class="container">
             <div class="section-title">
                 <h2>Step-by-Step Troubleshooting</h2>
-                <p>Follow these detailed steps to resolve the issue</p>
+                <p>Follow these detailed steps to resolve the SCSS conversion issue</p>
             </div>
             
             <div class="accordion">
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        Solution 1: Check your repository structure
+                        Solution 1: Verify the SCSS file exists
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-content">
-                        <p>The error suggests GitHub Pages is looking for a <code>/docs</code> folder but can't find it. Here's how to fix this:</p>
+                        <p>The error suggests Jekyll can't find your SCSS file. Here's how to fix this:</p>
                         <ul>
-                            <li>If your files are in the root of your repository, change the GitHub Pages source to "Deploy from root"</li>
-                            <li>If you want to use a <code>/docs</code> folder, create one and move your site files there</li>
-                            <li>Make sure your <code>index.html</code> is in the correct location</li>
+                            <li>Check that the file <code>assets/css/style.scss</code> exists in your repository</li>
+                            <li>Verify the file path is correct (case-sensitive)</li>
+                            <li>Ensure the file has been committed to GitHub</li>
+                            <li>If the file is in a different location, update references to it</li>
                         </ul>
-                        <p>To change the source: Go to your repository → Settings → Pages → Source → Select the appropriate option.</p>
+                        <p>To check: Go to your repository on GitHub and navigate to the assets/css directory to see if style.scss exists.</p>
                     </div>
                 </div>
                 
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        Solution 2: Check for configuration files
+                        Solution 2: Add front matter to SCSS files
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-content">
-                        <p>If you're using Jekyll (GitHub Pages' default site builder), you might have a configuration issue:</p>
+                        <p>Jekyll requires SCSS files to have front matter to process them:</p>
                         <ul>
-                            <li>Check for a <code>_config.yml</code> file in your repository</li>
-                            <li>Ensure it doesn't contain incorrect settings that might break the build</li>
-                            <li>If you're not using Jekyll, add an empty <code>.nojekyll</code> file to your root directory</li>
+                            <li>Open your SCSS file (e.g., assets/css/style.scss)</li>
+                            <li>Add this to the very top of the file:</li>
                         </ul>
-                        <p>Sometimes, disabling Jekyll can resolve build issues for simple HTML sites.</p>
+                        <pre>---
+---
+</pre>
+                        <ul>
+                            <li>Save the file and commit to GitHub</li>
+                            <li>This tells Jekyll to process the file</li>
+                        </ul>
+                        <p>Without this front matter, Jekyll will ignore the SCSS file, which can cause build errors.</p>
                     </div>
                 </div>
                 
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        Solution 3: Check your branch and file structure
+                        Solution 3: Check for import statements
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-content">
-                        <p>Your GitHub Pages deployment might be looking at the wrong branch or folder:</p>
+                        <p>The error might be caused by missing imported SCSS files:</p>
                         <ul>
-                            <li>Ensure you're using the correct branch (usually <code>main</code> or <code>gh-pages</code>)</li>
-                            <li>Verify that your files are actually in the repository and committed</li>
-                            <li>Check that filenames are using consistent casing (Git is case-sensitive)</li>
+                            <li>Check your style.scss file for <code>@import</code> statements</li>
+                            <li>Ensure all imported files exist in the correct locations</li>
+                            <li>Verify import paths are correct</li>
+                            <li>Make sure imported files also have front matter if they need processing</li>
                         </ul>
-                        <p>To change the branch: Go to your repository → Settings → Pages → Branch → Select the correct branch.</p>
+                        <p>Example of correct import:</p>
+                        <pre>@import "variables";
+@import "mixins";
+</pre>
+                        <p>Make sure variables.scss and mixins.scss exist in the same directory.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        Solution 4: Check your _config.yml
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Your Jekyll configuration might be causing the issue:</p>
+                        <ul>
+                            <li>Check your <code>_config.yml</code> file for Sass/SCSS settings</li>
+                            <li>Look for <code>sass_dir</code> configuration</li>
+                            <li>Ensure the configured directory exists</li>
+                            <li>Try simplifying your configuration to isolate the issue</li>
+                        </ul>
+                        <p>Example configuration:</p>
+                        <pre>sass:
+  sass_dir: assets/css
+  style: compressed
+</pre>
+                        <p>Make sure the sass_dir value matches your actual directory structure.</p>
                     </div>
                 </div>
             </div>
@@ -604,14 +651,29 @@
     <section class="interactive-checker" id="checker">
         <div class="container">
             <div class="section-title">
-                <h2>Repository Checker</h2>
-                <p>Verify your repository structure meets GitHub Pages requirements</p>
+                <h2>SCSS File Checker</h2>
+                <p>Verify your SCSS file setup meets Jekyll requirements</p>
             </div>
             
             <div class="checker-box">
-                <p>Enter your GitHub username to check your repository setup:</p>
-                <input type="text" class="checker-input" id="github-username" placeholder="Your GitHub username">
-                <button class="btn" onclick="checkRepo()">Check My Repository</button>
+                <p>Select the issues you might be experiencing:</p>
+                
+                <div style="text-align: left; margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 10px;">
+                        <input type="checkbox" id="issue1"> SCSS file missing front matter
+                    </label>
+                    <label style="display: block; margin-bottom: 10px;">
+                        <input type="checkbox" id="issue2"> File path incorrect
+                    </label>
+                    <label style="display: block; margin-bottom: 10px;">
+                        <input type="checkbox" id="issue3"> Missing imported SCSS files
+                    </label>
+                    <label style="display: block; margin-bottom: 10px;">
+                        <input type="checkbox" id="issue4"> Configuration issues
+                    </label>
+                </div>
+                
+                <button class="btn" onclick="checkSCSS()">Check My SCSS Setup</button>
                 
                 <div id="checker-result" class="checker-result">
                     <i class="fas fa-check-circle"></i>
@@ -626,7 +688,7 @@
         <div class="container">
             <h2>Need More Help?</h2>
             <p>Visit GitHub's official documentation or community forum for additional support</p>
-            <a href="https://docs.github.com/en/pages" class="btn" target="_blank">GitHub Pages Documentation</a>
+            <a href="https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll" class="btn" target="_blank">Jekyll Documentation</a>
             <a href="https://github.com/community/community" class="btn btn-outline" target="_blank">GitHub Community</a>
         </div>
     </section>
@@ -636,8 +698,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>GitHub Pages Fixer</h3>
-                    <p>Your resource for troubleshooting and fixing GitHub Pages errors.</p>
+                    <h3>Jekyll SCSS Fixer</h3>
+                    <p>Your resource for troubleshooting and fixing Jekyll SCSS errors.</p>
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-github"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -647,24 +709,24 @@
                 <div class="footer-column">
                     <h3>Resources</h3>
                     <ul>
-                        <li><a href="https://docs.github.com/en/pages">Official Documentation</a></li>
-                        <li><a href="https://github.com/community/community">GitHub Community</a></li>
-                        <li><a href="https://pages.github.com/">GitHub Pages</a></li>
-                        <li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages">Getting Started</a></li>
+                        <li><a href="https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll">Jekyll on GitHub Pages</a></li>
+                        <li><a href="https://jekyllrb.com/docs/">Jekyll Documentation</a></li>
+                        <li><a href="https://sass-lang.com/documentation">Sass/SCSS Documentation</a></li>
+                        <li><a href="https://github.com/jekyll/jekyll">Jekyll GitHub</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Common Issues</h3>
                     <ul>
-                        <li><a href="#">Build Errors</a></li>
-                        <li><a href="#">404 Errors</a></li>
-                        <li><a href="#">Custom Domains</a></li>
-                        <li><a href="#">Jekyll Problems</a></li>
+                        <li><a href="#">SCSS Conversion Errors</a></li>
+                        <li><a href="#">File Not Found</a></li>
+                        <li><a href="#">Front Matter Issues</a></li>
+                        <li><a href="#">Import Problems</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 GitHub Pages Fixer. This site is not affiliated with GitHub Inc.</p>
+                <p>&copy; 2023 Jekyll SCSS Fixer. This site is not affiliated with GitHub or Jekyll.</p>
             </div>
         </div>
     </footer>
@@ -691,41 +753,46 @@
             }
         }
         
-        // Repository checker function
-        function checkRepo() {
-            const username = document.getElementById('github-username').value.trim();
+        // SCSS checker function
+        function checkSCSS() {
+            const issue1 = document.getElementById('issue1').checked;
+            const issue2 = document.getElementById('issue2').checked;
+            const issue3 = document.getElementById('issue3').checked;
+            const issue4 = document.getElementById('issue4').checked;
+            
             const resultDiv = document.getElementById('checker-result');
             const resultText = document.getElementById('result-text');
             
-            if (!username) {
-                resultDiv.className = 'checker-result error';
-                resultText.innerHTML = 'Please enter your GitHub username';
+            if (!issue1 && !issue2 && !issue3 && !issue4) {
+                resultDiv.className = 'checker-result warning';
+                resultText.innerHTML = 'Please select at least one issue you\'re experiencing';
                 resultDiv.style.display = 'block';
                 return;
             }
             
-            // Simulate checking (in a real application, this would call GitHub's API)
-            resultDiv.className = 'checker-result warning';
-            resultText.innerHTML = `Checking repository <strong>${username}.github.io</strong>...`;
-            resultDiv.style.display = 'block';
+            // Build recommendation based on selected issues
+            let recommendations = [];
             
-            // Simulate API response after a delay
-            setTimeout(() => {
-                // This is a simulation - in a real scenario, you would use the GitHub API
-                const hasDocsFolder = Math.random() > 0.5;
-                const hasIndexFile = Math.random() > 0.3;
-                
-                if (!hasDocsFolder) {
-                    resultDiv.className = 'checker-result error';
-                    resultText.innerHTML = `Repository found, but no /docs folder detected. GitHub Pages is configured to build from /docs but this folder doesn't exist.`;
-                } else if (!hasIndexFile) {
-                    resultDiv.className = 'checker-result error';
-                    resultText.innerHTML = `Repository found with /docs folder, but no index.html file found. Add an index.html file to your /docs folder.`;
-                } else {
-                    resultDiv.className = 'checker-result success';
-                    resultText.innerHTML = `Repository structure looks good! Your site should be published at <a href="https://${username}.github.io" target="_blank">https://${username}.github.io</a>`;
-                }
-            }, 1500);
+            if (issue1) {
+                recommendations.push('Add YAML front matter (<code>---</code><code>---</code>) to the top of your SCSS file');
+            }
+            
+            if (issue2) {
+                recommendations.push('Verify your SCSS file exists at the correct path and check for typos');
+            }
+            
+            if (issue3) {
+                recommendations.push('Check all <code>@import</code> statements and ensure referenced files exist');
+            }
+            
+            if (issue4) {
+                recommendations.push('Review your <code>_config.yml</code> file for Sass-related configuration errors');
+            }
+            
+            resultDiv.className = 'checker-result success';
+            resultText.innerHTML = '<strong>Recommended actions:</strong><br>' + 
+                recommendations.join('<br>');
+            resultDiv.style.display = 'block';
         }
         
         // Simple animation for elements when they come into view
