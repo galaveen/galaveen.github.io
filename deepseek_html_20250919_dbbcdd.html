@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Pages Troubleshooting Guide</title>
+    <title>GitHub Pages Error Troubleshooter</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -21,6 +21,7 @@
             --dark: #1F2328;
             --text: #6c757d;
             --error: #cf222e;
+            --warning: #d4a72c;
         }
 
         body {
@@ -103,6 +104,17 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
         /* Hero Section */
         .hero {
             padding: 100px 0;
@@ -135,22 +147,33 @@
             border-radius: 6px;
             padding: 15px;
             margin: 30px auto;
-            max-width: 600px;
+            max-width: 800px;
             display: flex;
             align-items: center;
             animation: pulse 2s infinite;
+            text-align: left;
         }
 
         .error-alert i {
             color: var(--error);
             font-size: 24px;
             margin-right: 15px;
+            flex-shrink: 0;
         }
 
-        /* Features */
-        .features {
+        .error-code {
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        /* Sections */
+        section {
             padding: 80px 0;
-            background: white;
         }
 
         .section-title {
@@ -170,92 +193,58 @@
             color: var(--text);
         }
 
-        .feature-grid {
+        /* Solutions */
+        .solutions {
+            background: white;
+        }
+
+        .solution-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
 
-        .feature-card {
+        .solution-card {
             background: var(--light);
             padding: 30px;
             border-radius: 6px;
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid #d0d7de;
+            position: relative;
+            overflow: hidden;
         }
 
-        .feature-card:hover {
+        .solution-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--accent);
+        }
+
+        .solution-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .feature-icon {
+        .solution-icon {
             font-size: 40px;
             color: var(--accent);
             margin-bottom: 20px;
         }
 
-        .feature-card h3 {
+        .solution-card h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
             color: var(--dark);
-        }
-
-        /* How It Works */
-        .how-it-works {
-            padding: 80px 0;
-            background: #f5f8ff;
-        }
-
-        .steps {
-            display: flex;
-            justify-content: space-between;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .step {
-            text-align: center;
-            flex: 1;
-            padding: 0 20px;
-            position: relative;
-        }
-
-        .step-number {
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0 auto 20px;
-        }
-
-        .step h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-
-        .step:not(:last-child):after {
-            content: '';
-            position: absolute;
-            top: 25px;
-            right: -10px;
-            width: 20px;
-            height: 2px;
-            background: var(--primary);
         }
 
         /* Troubleshooting Section */
         .troubleshooting {
-            padding: 80px 0;
-            background: white;
+            background: #f5f8ff;
         }
 
         .accordion {
@@ -289,12 +278,76 @@
 
         .accordion-content.active {
             padding: 20px;
-            max-height: 300px;
+            max-height: 500px;
+        }
+
+        .accordion-content ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .accordion-content li {
+            margin-bottom: 8px;
+        }
+
+        code {
+            background: rgba(0, 0, 0, 0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        /* Interactive Checker */
+        .interactive-checker {
+            background: white;
+            text-align: center;
+        }
+
+        .checker-box {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #d0d7de;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .checker-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .checker-result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .success {
+            background: rgba(46, 164, 79, 0.15);
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .warning {
+            background: rgba(212, 167, 44, 0.15);
+            border: 1px solid var(--warning);
+            color: var(--warning);
+        }
+
+        .error {
+            background: rgba(207, 34, 46, 0.15);
+            border: 1px solid var(--error);
+            color: var(--error);
         }
 
         /* CTA */
         .cta {
-            padding: 80px 0;
             text-align: center;
             background: linear-gradient(135deg, var(--primary), var(--dark));
             color: white;
@@ -410,15 +463,6 @@
             .hero h1 {
                 font-size: 2.5rem;
             }
-
-            .steps {
-                flex-direction: column;
-                gap: 40px;
-            }
-
-            .step:not(:last-child):after {
-                display: none;
-            }
         }
     </style>
 </head>
@@ -429,12 +473,12 @@
             <nav>
                 <div class="logo">
                     <i class="fab fa-github"></i>
-                    <span>GitHub Pages Guide</span>
+                    <span>GitHub Pages Fixer</span>
                 </div>
                 <ul class="nav-links">
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#solutions">Solutions</a></li>
                     <li><a href="#troubleshooting">Troubleshooting</a></li>
+                    <li><a href="#checker">Checker</a></li>
                     <li><a href="#resources">Resources</a></li>
                 </ul>
                 <a href="#cta" class="btn">Get Help</a>
@@ -446,81 +490,51 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>GitHub Pages "File Not Found" Error</h1>
-                <p>Having trouble with your GitHub Pages site showing "404 File Not Found"? Let's fix it together.</p>
+                <h1>GitHub Pages Build Error</h1>
+                <p>Fixing the "No such file or directory @ dir_chdir" error in GitHub Pages</p>
                 
                 <div class="error-alert">
                     <i class="fas fa-exclamation-circle"></i>
                     <div>
-                        <strong>Common Error:</strong> The site configured at this address does not contain the requested file.
+                        <strong>Error Detected:</strong> Your GitHub Pages build is failing with the error:
+                        <div class="error-code">Error: No such file or directory @ dir_chdir0 - /github/workspace/docs</div>
+                        <p class="mt-2">This usually happens when GitHub Pages can't find your site's source files.</p>
                     </div>
                 </div>
                 
-                <a href="#troubleshooting" class="btn">Troubleshoot Now <i class="fas fa-arrow-right"></i></a>
+                <a href="#solutions" class="btn">View Solutions <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
 
-    <!-- Features -->
-    <section class="features" id="features">
+    <!-- Solutions Section -->
+    <section class="solutions" id="solutions">
         <div class="container">
             <div class="section-title">
-                <h2>Why GitHub Pages?</h2>
-                <p>Free hosting for your static websites with continuous deployment from GitHub</p>
+                <h2>How to Fix This Error</h2>
+                <p>Try these solutions to resolve the GitHub Pages build error</p>
             </div>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-globe"></i>
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-folder-open"></i>
                     </div>
-                    <h3>Free Hosting</h3>
-                    <p>Host your website for free on GitHub's servers with reliable uptime.</p>
+                    <h3>Check Your Source Folder</h3>
+                    <p>GitHub Pages is looking for a <code>/docs</code> folder but can't find it. Make sure your files are in the correct location.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-lock"></i>
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-cog"></i>
                     </div>
-                    <h3>SSL Included</h3>
-                    <p>Free SSL certificate included for secure HTTPS connections to your website.</p>
+                    <h3>Configure Source Settings</h3>
+                    <p>Go to your repository Settings → Pages → and select the correct source (root or /docs folder).</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-code-branch"></i>
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-file"></i>
                     </div>
-                    <h3>Version Control</h3>
-                    <p>Integrated with Git version control for easy updates and collaboration.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="how-it-works" id="how-it-works">
-        <div class="container">
-            <div class="section-title">
-                <h2>Setting Up GitHub Pages</h2>
-                <p>Follow these steps to correctly configure your GitHub Pages site</p>
-            </div>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Repository Name</h3>
-                    <p>Name your repository <code>username.github.io</code> (replace username with your GitHub username)</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
                     <h3>Add Index File</h3>
-                    <p>Ensure you have an <code>index.html</code> file in the root of your repository</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Enable Pages</h3>
-                    <p>Go to Settings → Pages → Select main branch as source</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3>Wait for Deployment</h3>
-                    <p>It can take up to 10 minutes for your site to be published</p>
+                    <p>Ensure you have an <code>index.html</code> file in the root of your selected source directory.</p>
                 </div>
             </div>
         </div>
@@ -530,64 +544,78 @@
     <section class="troubleshooting" id="troubleshooting">
         <div class="container">
             <div class="section-title">
-                <h2>Troubleshooting Guide</h2>
-                <p>Common issues and solutions for GitHub Pages "File Not Found" errors</p>
+                <h2>Step-by-Step Troubleshooting</h2>
+                <p>Follow these detailed steps to resolve the issue</p>
             </div>
             
             <div class="accordion">
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        Incorrect repository name
+                        Solution 1: Check your repository structure
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-content">
-                        <p>Your repository must be named exactly <code>username.github.io</code> where "username" is your GitHub username. This is case-sensitive.</p>
-                        <p>To fix: Rename your repository or create a new one with the correct naming convention.</p>
+                        <p>The error suggests GitHub Pages is looking for a <code>/docs</code> folder but can't find it. Here's how to fix this:</p>
+                        <ul>
+                            <li>If your files are in the root of your repository, change the GitHub Pages source to "Deploy from root"</li>
+                            <li>If you want to use a <code>/docs</code> folder, create one and move your site files there</li>
+                            <li>Make sure your <code>index.html</code> is in the correct location</li>
+                        </ul>
+                        <p>To change the source: Go to your repository → Settings → Pages → Source → Select the appropriate option.</p>
                     </div>
                 </div>
                 
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        Index file missing or misnamed
+                        Solution 2: Check for configuration files
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-content">
-                        <p>You must have an <code>index.html</code> file in the root of your repository. The filename is case-sensitive.</p>
-                        <p>To fix: Ensure your main HTML file is named exactly <code>index.html</code> and located in the root directory.</p>
+                        <p>If you're using Jekyll (GitHub Pages' default site builder), you might have a configuration issue:</p>
+                        <ul>
+                            <li>Check for a <code>_config.yml</code> file in your repository</li>
+                            <li>Ensure it doesn't contain incorrect settings that might break the build</li>
+                            <li>If you're not using Jekyll, add an empty <code>.nojekyll</code> file to your root directory</li>
+                        </ul>
+                        <p>Sometimes, disabling Jekyll can resolve build issues for simple HTML sites.</p>
                     </div>
                 </div>
                 
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        GitHub Pages not enabled
+                        Solution 3: Check your branch and file structure
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-content">
-                        <p>You need to enable GitHub Pages for your repository.</p>
-                        <p>To fix: Go to your repository → Settings → Pages → Select "main" or "gh-pages" as source branch.</p>
+                        <p>Your GitHub Pages deployment might be looking at the wrong branch or folder:</p>
+                        <ul>
+                            <li>Ensure you're using the correct branch (usually <code>main</code> or <code>gh-pages</code>)</li>
+                            <li>Verify that your files are actually in the repository and committed</li>
+                            <li>Check that filenames are using consistent casing (Git is case-sensitive)</li>
+                        </ul>
+                        <p>To change the branch: Go to your repository → Settings → Pages → Branch → Select the correct branch.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Checker -->
+    <section class="interactive-checker" id="checker">
+        <div class="container">
+            <div class="section-title">
+                <h2>Repository Checker</h2>
+                <p>Verify your repository structure meets GitHub Pages requirements</p>
+            </div>
+            
+            <div class="checker-box">
+                <p>Enter your GitHub username to check your repository setup:</p>
+                <input type="text" class="checker-input" id="github-username" placeholder="Your GitHub username">
+                <button class="btn" onclick="checkRepo()">Check My Repository</button>
                 
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">
-                        Deployment in progress
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="accordion-content">
-                        <p>It can take a few minutes for your site to deploy after pushing changes.</p>
-                        <p>To fix: Wait 5-10 minutes and check again. You can see the deployment status in the "Actions" tab.</p>
-                    </div>
-                </div>
-                
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">
-                        Custom domain misconfiguration
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="accordion-content">
-                        <p>If using a custom domain, you need to configure it properly in your repository settings and DNS.</p>
-                        <p>To fix: Check GitHub's documentation for custom domain setup and verify your DNS records.</p>
-                    </div>
+                <div id="checker-result" class="checker-result">
+                    <i class="fas fa-check-circle"></i>
+                    <span id="result-text"></span>
                 </div>
             </div>
         </div>
@@ -596,9 +624,10 @@
     <!-- CTA -->
     <section class="cta" id="cta">
         <div class="container">
-            <h2>Still Need Help?</h2>
+            <h2>Need More Help?</h2>
             <p>Visit GitHub's official documentation or community forum for additional support</p>
             <a href="https://docs.github.com/en/pages" class="btn" target="_blank">GitHub Pages Documentation</a>
+            <a href="https://github.com/community/community" class="btn btn-outline" target="_blank">GitHub Community</a>
         </div>
     </section>
 
@@ -607,8 +636,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>GitHub Pages Guide</h3>
-                    <p>Your resource for troubleshooting and learning about GitHub Pages.</p>
+                    <h3>GitHub Pages Fixer</h3>
+                    <p>Your resource for troubleshooting and fixing GitHub Pages errors.</p>
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-github"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -627,23 +656,15 @@
                 <div class="footer-column">
                     <h3>Common Issues</h3>
                     <ul>
+                        <li><a href="#">Build Errors</a></li>
                         <li><a href="#">404 Errors</a></li>
                         <li><a href="#">Custom Domains</a></li>
                         <li><a href="#">Jekyll Problems</a></li>
-                        <li><a href="#">HTTPS Issues</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Legal</h3>
-                    <ul>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Disclaimer</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 GitHub Pages Guide. This site is not affiliated with GitHub Inc.</p>
+                <p>&copy; 2023 GitHub Pages Fixer. This site is not affiliated with GitHub Inc.</p>
             </div>
         </div>
     </footer>
@@ -670,6 +691,43 @@
             }
         }
         
+        // Repository checker function
+        function checkRepo() {
+            const username = document.getElementById('github-username').value.trim();
+            const resultDiv = document.getElementById('checker-result');
+            const resultText = document.getElementById('result-text');
+            
+            if (!username) {
+                resultDiv.className = 'checker-result error';
+                resultText.innerHTML = 'Please enter your GitHub username';
+                resultDiv.style.display = 'block';
+                return;
+            }
+            
+            // Simulate checking (in a real application, this would call GitHub's API)
+            resultDiv.className = 'checker-result warning';
+            resultText.innerHTML = `Checking repository <strong>${username}.github.io</strong>...`;
+            resultDiv.style.display = 'block';
+            
+            // Simulate API response after a delay
+            setTimeout(() => {
+                // This is a simulation - in a real scenario, you would use the GitHub API
+                const hasDocsFolder = Math.random() > 0.5;
+                const hasIndexFile = Math.random() > 0.3;
+                
+                if (!hasDocsFolder) {
+                    resultDiv.className = 'checker-result error';
+                    resultText.innerHTML = `Repository found, but no /docs folder detected. GitHub Pages is configured to build from /docs but this folder doesn't exist.`;
+                } else if (!hasIndexFile) {
+                    resultDiv.className = 'checker-result error';
+                    resultText.innerHTML = `Repository found with /docs folder, but no index.html file found. Add an index.html file to your /docs folder.`;
+                } else {
+                    resultDiv.className = 'checker-result success';
+                    resultText.innerHTML = `Repository structure looks good! Your site should be published at <a href="https://${username}.github.io" target="_blank">https://${username}.github.io</a>`;
+                }
+            }, 1500);
+        }
+        
         // Simple animation for elements when they come into view
         document.addEventListener('DOMContentLoaded', function() {
             const observer = new IntersectionObserver((entries) => {
@@ -682,7 +740,7 @@
             }, { threshold: 0.1 });
             
             // Observe feature cards and steps
-            document.querySelectorAll('.feature-card, .step').forEach(el => {
+            document.querySelectorAll('.solution-card').forEach(el => {
                 el.style.opacity = '0';
                 observer.observe(el);
             });
