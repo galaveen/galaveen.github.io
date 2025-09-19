@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechSolutions - Free Web Services</title>
+    <title>GitHub Pages Troubleshooting Guide</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,12 +14,13 @@
         }
 
         :root {
-            --primary: #4a6cf7;
-            --secondary: #6f42c1;
-            --accent: #20c997;
-            --light: #f8f9fa;
-            --dark: #212529;
+            --primary: #24292e;
+            --secondary: #2ea44f;
+            --accent: #0366d6;
+            --light: #f6f8fa;
+            --dark: #1F2328;
             --text: #6c757d;
+            --error: #cf222e;
         }
 
         body {
@@ -36,7 +37,7 @@
 
         /* Header */
         header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary), var(--dark));
             color: white;
             padding: 20px 0;
             position: sticky;
@@ -60,7 +61,7 @@
 
         .logo i {
             margin-right: 10px;
-            color: var(--accent);
+            color: var(--secondary);
         }
 
         .nav-links {
@@ -80,15 +81,15 @@
         }
 
         .nav-links a:hover {
-            color: var(--accent);
+            color: var(--secondary);
         }
 
         .btn {
             display: inline-block;
-            background: var(--accent);
+            background: var(--secondary);
             color: white;
             padding: 12px 25px;
-            border-radius: 50px;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
@@ -97,7 +98,7 @@
         }
 
         .btn:hover {
-            background: #1aa67d;
+            background: #2c974b;
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
@@ -106,9 +107,14 @@
         .hero {
             padding: 100px 0;
             text-align: center;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 800 400"><rect fill="%234a6cf7" width="800" height="400"/><path fill="%236f42c1" fill-opacity="0.2" d="M0 192L26.7 202.7C53.3 213 107 235 160 234.7C213.3 235 267 213 320 197.3C373.3 181 427 171 480 186.7C533.3 203 587 245 640 250.7C693.3 256 747 224 773.3 208L800 192L800 401L773.3 401C746.7 401 693 401 640 401C586.7 401 533 401 480 401C426.7 401 373 401 320 401C266.7 401 213 401 160 401C106.7 401 53 401 27 401L0 401Z"></path></svg>') no-repeat bottom;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 800 400"><rect fill="%2324292e" width="800" height="400"/><path fill="%231F2328" fill-opacity="0.5" d="M0 192L26.7 202.7C53.3 213 107 235 160 234.7C213.3 235 267 213 320 197.3C373.3 181 427 171 480 186.7C533.3 203 587 245 640 250.7C693.3 256 747 224 773.3 208L800 192L800 401L773.3 401C746.7 401 693 401 640 401C586.7 401 533 401 480 401C426.7 401 373 401 320 401C266.7 401 213 401 160 401C106.7 401 53 401 27 401L0 401Z"></path></svg>') no-repeat bottom;
             background-size: cover;
             color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .hero h1 {
@@ -119,9 +125,26 @@
 
         .hero p {
             font-size: 1.2rem;
-            max-width: 700px;
             margin: 0 auto 30px;
             animation: fadeIn 1.5s ease;
+        }
+
+        .error-alert {
+            background: rgba(207, 34, 46, 0.15);
+            border: 1px solid var(--error);
+            border-radius: 6px;
+            padding: 15px;
+            margin: 30px auto;
+            max-width: 600px;
+            display: flex;
+            align-items: center;
+            animation: pulse 2s infinite;
+        }
+
+        .error-alert i {
+            color: var(--error);
+            font-size: 24px;
+            margin-right: 15px;
         }
 
         /* Features */
@@ -156,9 +179,10 @@
         .feature-card {
             background: var(--light);
             padding: 30px;
-            border-radius: 15px;
+            border-radius: 6px;
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #d0d7de;
         }
 
         .feature-card:hover {
@@ -168,7 +192,7 @@
 
         .feature-icon {
             font-size: 40px;
-            color: var(--primary);
+            color: var(--accent);
             margin-bottom: 20px;
         }
 
@@ -228,11 +252,51 @@
             background: var(--primary);
         }
 
+        /* Troubleshooting Section */
+        .troubleshooting {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            margin-bottom: 15px;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 15px 20px;
+            background: var(--light);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .accordion-content.active {
+            padding: 20px;
+            max-height: 300px;
+        }
+
         /* CTA */
         .cta {
             padding: 80px 0;
             text-align: center;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary), var(--dark));
             color: white;
         }
 
@@ -264,7 +328,7 @@
         .footer-column h3 {
             font-size: 1.3rem;
             margin-bottom: 20px;
-            color: var(--accent);
+            color: var(--secondary);
         }
 
         .footer-column ul {
@@ -282,7 +346,7 @@
         }
 
         .footer-column a:hover {
-            color: var(--accent);
+            color: var(--secondary);
         }
 
         .social-icons {
@@ -303,7 +367,7 @@
         }
 
         .social-icons a:hover {
-            background: var(--accent);
+            background: var(--secondary);
             transform: translateY(-3px);
         }
 
@@ -322,6 +386,18 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(207, 34, 46, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(207, 34, 46, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(207, 34, 46, 0);
             }
         }
 
@@ -352,16 +428,16 @@
         <div class="container">
             <nav>
                 <div class="logo">
-                    <i class="fas fa-rocket"></i>
-                    <span>TechSolutions</span>
+                    <i class="fab fa-github"></i>
+                    <span>GitHub Pages Guide</span>
                 </div>
                 <ul class="nav-links">
                     <li><a href="#features">Features</a></li>
                     <li><a href="#how-it-works">How It Works</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#troubleshooting">Troubleshooting</a></li>
+                    <li><a href="#resources">Resources</a></li>
                 </ul>
-                <a href="#signup" class="btn">Sign Up Free</a>
+                <a href="#cta" class="btn">Get Help</a>
             </nav>
         </div>
     </header>
@@ -369,9 +445,19 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Get Your Free Website Domain Today</h1>
-            <p>Create a professional online presence with our free domain and website hosting services. Perfect for startups, portfolios, and small businesses.</p>
-            <a href="#get-started" class="btn">Get Started <i class="fas fa-arrow-right"></i></a>
+            <div class="hero-content">
+                <h1>GitHub Pages "File Not Found" Error</h1>
+                <p>Having trouble with your GitHub Pages site showing "404 File Not Found"? Let's fix it together.</p>
+                
+                <div class="error-alert">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <div>
+                        <strong>Common Error:</strong> The site configured at this address does not contain the requested file.
+                    </div>
+                </div>
+                
+                <a href="#troubleshooting" class="btn">Troubleshoot Now <i class="fas fa-arrow-right"></i></a>
+            </div>
         </div>
     </section>
 
@@ -379,51 +465,30 @@
     <section class="features" id="features">
         <div class="container">
             <div class="section-title">
-                <h2>Why Choose Our Free Domain Service</h2>
-                <p>We provide everything you need to establish your online presence without any cost</p>
+                <h2>Why GitHub Pages?</h2>
+                <p>Free hosting for your static websites with continuous deployment from GitHub</p>
             </div>
             <div class="feature-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-globe"></i>
                     </div>
-                    <h3>Free Domain Name</h3>
-                    <p>Get a free domain name (yourname.github.io) to establish your online identity.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <h3>Reliable Hosting</h3>
-                    <p>Enjoy reliable hosting with 99.9% uptime guaranteed on GitHub Pages infrastructure.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>Fast Performance</h3>
-                    <p>Lightning-fast load times with global CDN ensuring optimal performance worldwide.</p>
+                    <h3>Free Hosting</h3>
+                    <p>Host your website for free on GitHub's servers with reliable uptime.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-lock"></i>
                     </div>
-                    <h3>SSL Security</h3>
+                    <h3>SSL Included</h3>
                     <p>Free SSL certificate included for secure HTTPS connections to your website.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-paint-brush"></i>
+                        <i class="fas fa-code-branch"></i>
                     </div>
-                    <h3>Easy Customization</h3>
-                    <p>Customize your website with easy-to-use templates and drag-and-drop editor.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Basic Analytics</h3>
-                    <p>Track your website traffic with basic built-in analytics to understand your audience.</p>
+                    <h3>Version Control</h3>
+                    <p>Integrated with Git version control for easy updates and collaboration.</p>
                 </div>
             </div>
         </div>
@@ -433,92 +498,178 @@
     <section class="how-it-works" id="how-it-works">
         <div class="container">
             <div class="section-title">
-                <h2>How To Get Your Free Domain</h2>
-                <p>Follow these simple steps to set up your free website with GitHub Pages</p>
+                <h2>Setting Up GitHub Pages</h2>
+                <p>Follow these steps to correctly configure your GitHub Pages site</p>
             </div>
             <div class="steps">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <h3>Create GitHub Account</h3>
-                    <p>Sign up for a free GitHub account if you don't have one already</p>
+                    <h3>Repository Name</h3>
+                    <p>Name your repository <code>username.github.io</code> (replace username with your GitHub username)</p>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
-                    <h3>Create New Repository</h3>
-                    <p>Create a new repository named username.github.io (replace with your username)</p>
+                    <h3>Add Index File</h3>
+                    <p>Ensure you have an <code>index.html</code> file in the root of your repository</p>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
-                    <h3>Upload Your Website</h3>
-                    <p>Add your HTML, CSS, and JavaScript files to this repository</p>
+                    <h3>Enable Pages</h3>
+                    <p>Go to Settings → Pages → Select main branch as source</p>
                 </div>
                 <div class="step">
                     <div class="step-number">4</div>
-                    <h3>Access Your Site</h3>
-                    <p>Your website will be live at https://username.github.io</p>
+                    <h3>Wait for Deployment</h3>
+                    <p>It can take up to 10 minutes for your site to be published</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Troubleshooting Section -->
+    <section class="troubleshooting" id="troubleshooting">
+        <div class="container">
+            <div class="section-title">
+                <h2>Troubleshooting Guide</h2>
+                <p>Common issues and solutions for GitHub Pages "File Not Found" errors</p>
+            </div>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        Incorrect repository name
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Your repository must be named exactly <code>username.github.io</code> where "username" is your GitHub username. This is case-sensitive.</p>
+                        <p>To fix: Rename your repository or create a new one with the correct naming convention.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        Index file missing or misnamed
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>You must have an <code>index.html</code> file in the root of your repository. The filename is case-sensitive.</p>
+                        <p>To fix: Ensure your main HTML file is named exactly <code>index.html</code> and located in the root directory.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        GitHub Pages not enabled
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>You need to enable GitHub Pages for your repository.</p>
+                        <p>To fix: Go to your repository → Settings → Pages → Select "main" or "gh-pages" as source branch.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        Deployment in progress
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>It can take a few minutes for your site to deploy after pushing changes.</p>
+                        <p>To fix: Wait 5-10 minutes and check again. You can see the deployment status in the "Actions" tab.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        Custom domain misconfiguration
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>If using a custom domain, you need to configure it properly in your repository settings and DNS.</p>
+                        <p>To fix: Check GitHub's documentation for custom domain setup and verify your DNS records.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA -->
-    <section class="cta" id="signup">
+    <section class="cta" id="cta">
         <div class="container">
-            <h2>Ready to Launch Your Website?</h2>
-            <p>Join thousands of satisfied users who have established their online presence with our free domain service</p>
-            <a href="#" class="btn">Get Your Free Domain Now</a>
+            <h2>Still Need Help?</h2>
+            <p>Visit GitHub's official documentation or community forum for additional support</p>
+            <a href="https://docs.github.com/en/pages" class="btn" target="_blank">GitHub Pages Documentation</a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer id="resources">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>TechSolutions</h3>
-                    <p>Providing free web services and domains to help you succeed online since 2023.</p>
+                    <h3>GitHub Pages Guide</h3>
+                    <p>Your resource for troubleshooting and learning about GitHub Pages.</p>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
-                    <h3>Services</h3>
+                    <h3>Resources</h3>
                     <ul>
-                        <li><a href="#">Free Domain</a></li>
-                        <li><a href="#">Web Hosting</a></li>
-                        <li><a href="#">Website Builder</a></li>
-                        <li><a href="#">SSL Certificate</a></li>
+                        <li><a href="https://docs.github.com/en/pages">Official Documentation</a></li>
+                        <li><a href="https://github.com/community/community">GitHub Community</a></li>
+                        <li><a href="https://pages.github.com/">GitHub Pages</a></li>
+                        <li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages">Getting Started</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Help & Support</h3>
+                    <h3>Common Issues</h3>
                     <ul>
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">Tutorials</a></li>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Contact Support</a></li>
+                        <li><a href="#">404 Errors</a></li>
+                        <li><a href="#">Custom Domains</a></li>
+                        <li><a href="#">Jekyll Problems</a></li>
+                        <li><a href="#">HTTPS Issues</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Legal</h3>
                     <ul>
-                        <li><a href="#">Terms of Service</a></li>
                         <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
-                        <li><a href="#">GDPR Compliance</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Disclaimer</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 TechSolutions. All rights reserved.</p>
+                <p>&copy; 2023 GitHub Pages Guide. This site is not affiliated with GitHub Inc.</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Accordion functionality
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const isActive = content.classList.contains('active');
+            
+            // Close all accordion items
+            document.querySelectorAll('.accordion-content').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.accordion-header i').forEach(icon => {
+                icon.className = 'fas fa-chevron-down';
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                content.classList.add('active');
+                header.querySelector('i').className = 'fas fa-chevron-up';
+            }
+        }
+        
         // Simple animation for elements when they come into view
         document.addEventListener('DOMContentLoaded', function() {
             const observer = new IntersectionObserver((entries) => {
